@@ -300,7 +300,7 @@ nav a:focus-visible {
   color: var(--muted);
 }
 
-/* About/Experience shared box style — fixed design width, scaled as one unit, sizes to its own content */
+/* About/Experience shared box style */
 .about-scale-wrapper {
   width: 100%;
   display: flex;
@@ -317,35 +317,22 @@ nav a:focus-visible {
   padding: 2.5rem 3rem 3.5rem;
   line-height: 1.6;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: 1rem;
-  scrollbar-color: transparent;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .about-style-box::-webkit-scrollbar {
-  width: 8px;
-}
-
-.about-style-box::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.about-style-box::-webkit-scrollbar-thumb {
-  background-color: var(--accent);
-  border-radius: 10px;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .about-style-box h2 {
   margin-bottom: 1rem;
 }
 
-@media (max-width: 960px) {
-  .about-style-box {
-    padding: 1.5rem 1.75rem 2.25rem;
-    border-radius: 0 40px 0 40px;
-    min-height: 320px;
-  }
-}
 #about.view {
   max-width: none;
   width: 100%;
@@ -355,7 +342,7 @@ nav a:focus-visible {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
-  margin-top: 0.0rem;
+  margin-top: 0;
 }
 
 .about-text {
@@ -380,7 +367,7 @@ nav a:focus-visible {
   box-shadow: 0 12px 28px rgba(37, 49, 56, 0.18);
 }
 
-/* Experience cards (inside the Experience box) */
+/* Experience cards */
 .experience-card {
   background-color: #f4f6f7;
   border: 1px solid rgba(84, 110, 122, 0.15);
@@ -399,7 +386,7 @@ nav a:focus-visible {
   align-items: flex-start;
   gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .experience-header h4 {
@@ -448,17 +435,6 @@ nav a:focus-visible {
   font-size: 0.82rem;
   font-style: italic;
   color: var(--accent);
-}
-
-@media (max-width: 640px) {
-  .experience-header {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .experience-dates {
-    text-align: left;
-  }
 }
 
 /* Projects page overrides */
@@ -555,7 +531,7 @@ nav a:focus-visible {
 /* Responsive: tablet range */
 @media (max-width: 900px) {
   .view-container {
-    padding: 0 0.1rem;
+    padding: 0 1.25rem;
   }
 
   .photo-wrapper,
@@ -577,12 +553,20 @@ nav a:focus-visible {
 /* Responsive: phones */
 @media (max-width: 640px) {
   nav {
-    gap: 1.5rem;
-    padding: 1.1rem 0;
+    gap: 1.25rem;
+    padding: 1rem 0;
   }
 
   nav a {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .view-container {
+    padding: 0 1rem;
+  }
+
+  .view {
+    padding: 1rem;
   }
 
   .hero {
@@ -594,21 +578,29 @@ nav a:focus-visible {
   .photo-wrapper,
   .twist-oval,
   .hero-photo {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .contact-icons {
     justify-content: center;
   }
 
+  .contact-icons a {
+    width: 44px;
+    height: 44px;
+  }
+
   .page {
-    padding: 1.75rem;
+    padding: 1.5rem;
     border-radius: 18px;
   }
 
   .about-style-box {
-    padding: 3rem 3rem 5rem;
+    padding: 1.5rem 1.5rem 2rem;
+    border-radius: 0 32px 0 32px;
+    min-height: 320px;
+    max-height: 70vh;
   }
 
   .about-content {
@@ -619,15 +611,25 @@ nav a:focus-visible {
   }
 
   .about-photo {
-    width: 180px;
+    width: 160px;
   }
 
   .project-card {
     padding: 1.25rem;
   }
 
+  .experience-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-dates {
+    text-align: left;
+  }
+
   .project-links {
-    gap: 0.75rem;
+    flex-direction: column;
+    gap: 0.6rem;
   }
 }
 
@@ -636,12 +638,16 @@ nav a:focus-visible {
   .photo-wrapper,
   .twist-oval,
   .hero-photo {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
   }
 
   .page {
-    padding: 1.25rem;
+    padding: 1.1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.9rem;
   }
 }
 
