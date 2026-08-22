@@ -657,3 +657,84 @@ nav a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============ NEW: COPY EMAIL BUTTON + TOAST ============ */
+
+.copy-email-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.copy-email-btn svg {
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.copy-email-btn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.copy-email-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.copy-email-btn.copied {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  transform: scale(0.92);
+}
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--dark);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  z-index: 100;
+}
+
+.toast::before {
+  content: "✓";
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .toast {
+    bottom: 1.25rem;
+    font-size: 0.85rem;
+    padding: 0.7rem 1.25rem;
+  }
+}
