@@ -33,3 +33,33 @@ function handleNavScroll() {
 }
 
 window.addEventListener("scroll", handleNavScroll);
+
+const copyEmailBtn = document.getElementById("copyEmailBtn");
+const emailToast = document.getElementById("emailToast");
+const emailAddress = "mosehshin@gmail.com";
+
+if (copyEmailBtn) {
+  copyEmailBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(emailAddress);
+    } catch (err) {
+      const tempInput = document.createElement("input");
+      tempInput.value = emailAddress;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+    }
+
+    copyEmailBtn.classList.add("copied");
+    emailToast.classList.add("show");
+
+    setTimeout(() => {
+      copyEmailBtn.classList.remove("copied");
+    }, 500);
+
+    setTimeout(() => {
+      emailToast.classList.remove("show");
+    }, 2200);
+  });
+}
