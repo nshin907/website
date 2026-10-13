@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -24,6 +25,8 @@ body {
   background: linear-gradient(135deg, var(--muted) 50%, var(--light) 50%);
   min-height: 100vh;
   overflow-x: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Nav */
@@ -33,7 +36,7 @@ nav {
   gap: 2.5rem;
   padding: 1.5rem 0;
   position: sticky;
-  top: 0;
+  top: env(safe-area-inset-top, 0px);
   background: transparent;
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(0px);
@@ -58,6 +61,7 @@ nav a {
   letter-spacing: 0.03em;
   position: relative;
   cursor: pointer;
+  padding: 0.4rem 0.2rem;
   transition: color 0.25s var(--ease);
 }
 
@@ -65,7 +69,7 @@ nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: -2px;
   width: 0%;
   height: 2px;
   background-color: #ffffff;
@@ -281,7 +285,7 @@ nav a:focus-visible {
   outline-offset: 3px;
 }
 
-/* Tooltip on hover */
+/* Tooltip on hover (hidden on touch devices, see media query below) */
 .icon-tooltip {
   position: absolute;
   bottom: calc(100% + 10px);
@@ -568,139 +572,6 @@ nav a:focus-visible {
   outline-offset: 3px;
 }
 
-/* Responsive: tablet range */
-@media (max-width: 900px) {
-  .view-container {
-    padding: 0 1.25rem;
-  }
-
-  .photo-wrapper,
-  .twist-oval,
-  .hero-photo {
-    width: 280px;
-    height: 280px;
-  }
-
-  .hero {
-    gap: 3rem;
-  }
-
-  .about-photo {
-    width: 220px;
-  }
-}
-
-/* Responsive: phones */
-@media (max-width: 640px) {
-  nav {
-    gap: 1.25rem;
-    padding: 1rem 0;
-  }
-
-  nav a {
-    font-size: 0.8rem;
-  }
-
-  .view-container {
-    padding: 0 1rem;
-  }
-
-  .view {
-    padding: 1rem;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-
-  .photo-wrapper,
-  .twist-oval,
-  .hero-photo {
-    width: 200px;
-    height: 200px;
-  }
-
-  .contact-icons {
-    justify-content: center;
-  }
-
-  .contact-icons a,
-  .contact-icons button {
-    width: 44px;
-    height: 44px;
-  }
-
-  .page {
-    padding: 1.5rem;
-    border-radius: 18px;
-  }
-
-  .about-style-box {
-    padding: 1.5rem 1.5rem 2rem;
-    border-radius: 0 32px 0 32px;
-    min-height: 320px;
-    max-height: 70vh;
-  }
-
-  .about-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1.25rem;
-  }
-
-  .about-photo {
-    width: 160px;
-  }
-
-  .project-card {
-    padding: 1.25rem;
-  }
-
-  .experience-header {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .experience-dates {
-    text-align: left;
-  }
-
-  .project-links {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-}
-
-/* Responsive: very small phones */
-@media (max-width: 380px) {
-  .photo-wrapper,
-  .twist-oval,
-  .hero-photo {
-    width: 160px;
-    height: 160px;
-  }
-
-  .page {
-    padding: 1.1rem;
-  }
-
-  .hero-text h1 {
-    font-size: 1.9rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ============ COPY EMAIL BUTTON + TOAST ============ */
-
 .copy-email-btn {
   cursor: pointer;
 }
@@ -744,10 +615,214 @@ nav a:focus-visible {
   transform: translateX(-50%) translateY(0);
 }
 
+/* ======================= RESPONSIVE ======================= */
+
+/* Tablet range */
+@media (max-width: 900px) {
+  .view-container {
+    padding: 0 1.25rem;
+  }
+
+  .photo-wrapper,
+  .twist-oval,
+  .hero-photo {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero {
+    gap: 3rem;
+  }
+
+  .about-photo {
+    width: 220px;
+  }
+}
+
+/* Phones */
 @media (max-width: 640px) {
+  nav {
+    gap: 1.25rem;
+    padding: 1rem 0;
+  }
+
+  nav a {
+    font-size: 0.82rem;
+  }
+
+  .view-container {
+    padding: 0 1rem;
+  }
+
+  .view {
+    padding: 1rem;
+  }
+
+  #home {
+    padding: 0;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .photo-wrapper,
+  .twist-oval,
+  .hero-photo {
+    width: 190px;
+    height: 190px;
+  }
+
+  .hero-text h1 {
+    white-space: normal;
+    font-size: clamp(1.9rem, 9vw, 2.75rem);
+  }
+
+  .contact-icons {
+    justify-content: center;
+  }
+
+  .contact-icons a,
+  .contact-icons button {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Tooltips rely on hover, which doesn't exist on touch —
+     hide them so there's no stuck/ghost tooltip after a tap */
+  .icon-tooltip {
+    display: none;
+  }
+
+  .page {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
+  .about-style-box {
+    padding: 1.5rem 1.25rem 2rem;
+    border-radius: 0 28px 0 28px;
+    min-height: 300px;
+    max-height: 65vh;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .about-photo {
+    width: 160px;
+  }
+
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .experience-card {
+    padding: 1rem 1.1rem;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-dates {
+    text-align: left;
+  }
+
+  .experience-dates p {
+    font-size: 0.78rem;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
   .toast {
     bottom: 1.25rem;
+    left: 1rem;
+    right: 1rem;
+    transform: translateY(20px);
+    text-align: center;
     font-size: 0.85rem;
-    padding: 0.7rem 1.25rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  nav {
+    gap: 0.9rem;
+  }
+
+  nav a {
+    font-size: 0.75rem;
+  }
+
+  .photo-wrapper,
+  .twist-oval,
+  .hero-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .page {
+    padding: 1.1rem;
+  }
+
+  .about-style-box {
+    padding: 1.25rem 1rem 1.75rem;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(1.6rem, 10vw, 2.1rem);
+  }
+
+  .contact-icons a,
+  .contact-icons button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-icons svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+/* Landscape phones (short viewport height) */
+@media (max-height: 480px) and (orientation: landscape) {
+  #home {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .photo-wrapper,
+  .twist-oval,
+  .hero-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero {
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
